@@ -9,10 +9,14 @@ public class BallThread extends Thread {
         try{
             for(int i=1; i<10000; i++){
                 b.move();
+
+                // Interrupt if Ball is in Basket
+                if (b.isInBasket())
+                    this.interrupt();
+
                 System.out.println("Thread name = "
                         + Thread.currentThread().getName());
                 Thread.sleep(5);
-
             }
         } catch(InterruptedException ignored){
         }
