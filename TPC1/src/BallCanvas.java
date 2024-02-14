@@ -4,8 +4,8 @@ import javax.swing.JPanel;
 
 
 public class BallCanvas extends JPanel {
-    private ArrayList<Ball> balls = new ArrayList<>();
-    private ArrayList<Basket> baskets = new ArrayList<>();
+    private final ArrayList<Ball> balls = new ArrayList<>();
+    private final ArrayList<Basket> baskets = new ArrayList<>();
     private int nBallsInBaskets = 0;
     public void addBall(Ball b){
         this.balls.add(b);
@@ -15,7 +15,7 @@ public class BallCanvas extends JPanel {
     }
     public ArrayList<Basket> getBaskets(){return baskets;}
 
-    private ArrayList<BallInBasketListener> listeners = new ArrayList<>();
+    private final ArrayList<BallInBasketListener> listeners = new ArrayList<>();
     public int getBallsInBaskets(){
         return nBallsInBaskets;
     }

@@ -12,10 +12,12 @@ public class Ball {
     private int dx = 2;
     private int dy = 2;
     private boolean in_basket = false;
+    private Color color;
 
     public Ball(BallCanvas c){
         this.canvas = c;
 
+        color = Color.darkGray; // regular color
 
         if(Math.random()<0.5){
             x = new Random().nextInt(this.canvas.getWidth());
@@ -26,12 +28,19 @@ public class Ball {
         }
     }
 
+    public Ball(BallCanvas c, int x, int y, Color color){
+        this.canvas = c;
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+
     public static void f(){
         int a = 0;
     }
 
     public void draw (Graphics2D g2){
-        g2.setColor(Color.darkGray);
+        g2.setColor(this.color);
         g2.fill(new Ellipse2D.Double(x,y,XSIZE,YSIZE));
 
     }
