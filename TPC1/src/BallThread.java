@@ -1,3 +1,5 @@
+import java.awt.*;
+
 public class BallThread extends Thread {
     private Ball b;
 
@@ -8,7 +10,7 @@ public class BallThread extends Thread {
     public void run(){
         try{
             // Interrupt if Ball is in Basket
-            for(int i=1; i<10000 && !b.isInBasket(); i++){
+            for(int i=1; i < b.getIterationsNumber() && !b.isInBasket(); i++){
                 b.move();
 
                 System.out.println("Thread name = "
@@ -23,6 +25,8 @@ public class BallThread extends Thread {
 
                 Thread.sleep(5);
             }
+
+            b.setColor(Color.darkGray);
         } catch(InterruptedException ignored){
             System.out.println("INTERRUPTED EXCEPTION!!!");
         }

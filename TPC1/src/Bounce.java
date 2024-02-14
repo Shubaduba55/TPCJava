@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.nio.Buffer;
 import java.util.Scanner;
 
 public class Bounce {
@@ -10,18 +9,12 @@ public class Bounce {
 
         int taskNumber = myScanner.nextInt();
 
-        Task t;
+        Task t = switch (taskNumber) {
+            case 3 -> Task.TASK3;
+            case 4 -> Task.TASK4;
+            default -> Task.TASK2;
+        };
 
-        switch (taskNumber){
-            case 2:
-                t = Task.TASK2;
-                break;
-            case 3:
-                t = Task.TASK3;
-                break;
-            default:
-                t = Task.TASK2;
-        }
         BounceFrame frame = new BounceFrame(t);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 

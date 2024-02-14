@@ -13,7 +13,7 @@ public class Ball {
     private int dy = 2;
     private boolean in_basket = false;
     private Color color;
-
+    private int iterationsNumber;
     public Ball(BallCanvas c){
         this.canvas = c;
 
@@ -26,6 +26,7 @@ public class Ball {
             x = 0;
             y = new Random().nextInt(this.canvas.getHeight());
         }
+        iterationsNumber = 10000;
     }
 
     public Ball(BallCanvas c, int x, int y, Color color){
@@ -33,8 +34,14 @@ public class Ball {
         this.x = x;
         this.y = y;
         this.color = color;
+        iterationsNumber = 10000;
     }
 
+    public Ball(BallCanvas c, int x, int y, Color color, int iterationsNumber)
+    {
+        this(c, x, y, color);
+        this.iterationsNumber = iterationsNumber;
+    }
     public static void f(){
         int a = 0;
     }
@@ -78,5 +85,17 @@ public class Ball {
 
     public boolean isInBasket(){
         return in_basket;
+    }
+
+    public int getIterationsNumber() {
+        return iterationsNumber;
+    }
+
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
+    public Color getColor() {
+        return color;
     }
 }

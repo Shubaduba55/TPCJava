@@ -40,6 +40,15 @@ public class BounceFrame extends JFrame implements BallInBasketListener {
 
                     case TASK3 ->
                         createRedAndBlueBalls(0, 0, 100);
+                    case TASK4 ->{
+                        ArrayList<Ball> balls = new ArrayList<>();
+                        int iterations = 300;
+                        balls.add(new Ball(canvas, 0, 0, Color.red, iterations));
+                        balls.add(new Ball(canvas, 100, 0, Color.green, iterations));
+                        balls.add(new Ball(canvas, 0, 100, Color.blue, iterations));
+                        joinBalls(balls);
+                    }
+
                 }
             }
         });
@@ -142,5 +151,30 @@ public class BounceFrame extends JFrame implements BallInBasketListener {
             System.out.println("Thread name = " +
                     threads.get(i).getName());
         }
+    }
+    private void joinBalls(ArrayList<Ball> balls){
+        ArrayList<BallThreadWithJoin> threads = new ArrayList<>();
+
+        for (Ball ball : balls) canvas.addBall(ball);
+
+        for (int i = 0; i < balls.size() - 1; i++){
+            threads.add(new BallThreadWithJoin(balls.get(i)));
+        }
+
+        int nThreads = threads.size();
+
+        // Connect threads
+        for (int i = 0; i < nThreads - 1; i++){
+            threads.get(i).setThread(threads.get(i+1));
+        }
+
+        // Create BallThread for last ball and connect BallThread to the last BallThreadWithJoin
+        BallThread threadLast = new BallThread(balls.get(balls.size()-1));
+        threads.get(nThreads-1).setThread(threadLast);
+
+        //Start threads
+//        for (BallThreadWithJoin thread : threads)
+//            thread.start();
+        threads.get(0).start();
     }
 }
